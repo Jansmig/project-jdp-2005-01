@@ -108,4 +108,35 @@ public class CartTestSuite {
         Assert.assertFalse(cartRepository.existsById(cart1Id));
         Assert.assertFalse(cartRepository.existsById(cart2Id));
     }
+
+    @Test
+    public void updateCartTest(){
+        //Given:
+        List<Product> emptyProductsList = new ArrayList<>();
+        Product product1 = new Product();
+        product1.setName("Product1");
+        emptyProductsList.add(product1);
+        Cart cart = new Cart();
+        cart.setProducts(emptyProductsList);
+        cartRepository.save(cart);
+        Long cartId = cart.getCartId();
+        List<Product> productList = cart.getProducts();
+        Cart position = cartRepository.findById(cartId).orElse(null);
+
+        //When:
+        assert position != null;
+        List<Product> updatedProductsList = new ArrayList<>();
+        Product product2 = new Product();
+        product2.setName("Product2");
+        updatedProductsList.add(product2);
+        position.setProducts(updatedProductsList);
+        cartRepository.save(position);
+        List<Product> updatedProductList = position.getProducts();
+
+        //Then:
+        Assert.assertNotEquals(productList, updatedProductList);
+
+        //Clean-up:
+        cartRepository.deleteById(cartId);
+    }
 }
