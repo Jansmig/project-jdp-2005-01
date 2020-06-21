@@ -34,9 +34,7 @@ public class CartTestSuite {
 
         //Then:
         Assert.assertNotNull(cart1Id);
-        Assert.assertEquals(1, (long)cart1Id);
         Assert.assertNotNull(cart2Id);
-        Assert.assertEquals(2, (long)cart2Id);
 
         //Clean-up:
         cartRepository.deleteById(cart1Id);
