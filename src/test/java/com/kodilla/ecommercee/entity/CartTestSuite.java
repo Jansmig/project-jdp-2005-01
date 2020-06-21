@@ -18,6 +18,51 @@ public class CartTestSuite {
     private CartRepository cartRepository;
 
     @Test
+    public void saveCartTest(){
+        //Given:
+        List<Product> emptyProductsList = new ArrayList<>();
+        Cart cart1 = new Cart();
+        cart1.setProducts(emptyProductsList);
+        Cart cart2 = new Cart();
+        cart2.setProducts(emptyProductsList);
+
+        //When:
+        cartRepository.save(cart1);
+        cartRepository.save(cart2);
+        Long cart1Id = cart1.getCartId();
+        Long cart2Id = cart2.getCartId();
+
+        //Then:
+        Assert.assertNotNull(cart1Id);
+        Assert.assertNotNull(cart2Id);
+
+        //Clean-up:
+        cartRepository.deleteById(cart1Id);
+        cartRepository.deleteById(cart2Id);
+    }
+
+    @Test
+    public void getAllCartsTest(){
+        //Given:
+        List<Product> emptyProductsList = new ArrayList<>();
+        Cart cart1 = new Cart();
+        cart1.setProducts(emptyProductsList);
+        Cart cart2 = new Cart();
+        cart2.setProducts(emptyProductsList);
+
+        //When:
+        cartRepository.save(cart1);
+        cartRepository.save(cart2);
+        List<Cart> carts = cartRepository.findAll();
+
+        //Then:
+        Assert.assertEquals(2, carts.size());
+
+        //Clean-up:
+        cartRepository.deleteAll();
+    }
+
+    @Test
     public void findCartTest(){
         //Given:
         List<Product> emptyProductsList = new ArrayList<>();
