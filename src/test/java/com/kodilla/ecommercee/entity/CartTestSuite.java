@@ -53,7 +53,7 @@ public class CartTestSuite {
         //When:
         cartRepository.save(cart1);
         cartRepository.save(cart2);
-        List<Cart> carts = (List<Cart>) cartRepository.findAll();
+        List<Cart> carts = cartRepository.findAll();
 
         //Then:
         Assert.assertEquals(2, carts.size());
