@@ -114,7 +114,7 @@ public class CartTestSuite {
         //Given:
         List<Product> emptyProductsList = new ArrayList<>();
         Product product1 = new Product();
-        product1.setName("product1");
+        product1.setName("Product1");
         emptyProductsList.add(product1);
         Cart cart = new Cart();
         cart.setProducts(emptyProductsList);
@@ -127,7 +127,7 @@ public class CartTestSuite {
         assert position != null;
         List<Product> updatedProductsList = new ArrayList<>();
         Product product2 = new Product();
-        product2.setName("product2");
+        product2.setName("Product2");
         updatedProductsList.add(product2);
         position.setProducts(updatedProductsList);
         cartRepository.save(position);
